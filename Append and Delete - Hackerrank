@@ -1,0 +1,37 @@
+def appendAndDelete(s, t, k):
+    count = 0
+
+    if k >= len(s) + len(t):
+        print('Yes')
+    elif (len(s) % 2) == (len(t) % 2) and k % 2 != 0:  # both even or both odd
+        print('No')
+    elif (len(s) % 2) != (len(t) % 2) and k % 2 == 0:
+        print('No')
+    else:
+        if len(t) > len(s):
+            for i in range(len(s)):
+                if s[i] == t[i]:
+                    count += 1
+                else:
+                    break
+        else:
+            for i in range(len(t)):
+                if s[i] == t[i]:
+                        count += 1
+                else:
+                    break
+        # count = how many letters are the same at the start
+        n_moves = len(s) + len(t) - count * 2  # the number of moves it will take to delete the wrong letters from s
+        if n_moves == k or ((k - n_moves) % 2 == 0 and (k - n_moves) > 0):
+            print('Yes')
+        else:
+            print('No')
+
+
+s = 'qwerasdf'
+
+t = 'qwerbsdf'
+
+k = 6
+
+result = appendAndDelete(s, t, k)
