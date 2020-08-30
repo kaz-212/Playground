@@ -1,0 +1,21 @@
+#!/bin/python3
+
+import os
+import sys
+
+#
+# Complete the timeConversion function below.
+#
+def timeConversion(s):
+    if s[-2] == 'P' and s[:2] != '12':
+        s = str(int(s[:2]) + 12) + s[2:]
+    elif s[:2] == '12' and s[-2] != 'P':
+        return print('00', s[2:-2], sep="")
+    return print(s[:-2])
+
+if __name__ == '__main__':
+
+    s = input()
+
+    result = timeConversion(s)
+
