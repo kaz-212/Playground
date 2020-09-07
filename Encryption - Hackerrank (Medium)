@@ -1,0 +1,30 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the encryption function below.
+def encryption(s):
+    s = s.replace(" ", "")
+    sq = math.sqrt(len(s))
+    row = math.ceil(sq)
+    lis = list()
+    for _ in range(row):
+        count = -1
+        for i in s:
+            count += 1
+            if count % row == 0:
+                lis.append(i)
+        lis.append(" ")
+        s = s[1:]
+    return(print("".join(lis)))
+
+
+if __name__ == '__main__':
+
+    s = input()
+
+    result = encryption(s)
