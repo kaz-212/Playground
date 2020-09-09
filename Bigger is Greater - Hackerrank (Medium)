@@ -1,0 +1,43 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#returns the index of the lowest letter that comes after a given letter, y, in a list that is also greater than y
+def check_after(x, y): #x is list name, y is index
+    sub_list = [i for i in x[y:] if i > x[y]]
+    z = x.copy()
+    z.reverse()
+    try:
+        return -(z.index(min(sub_list))) - 1
+    except:
+        return False
+    
+# first create a list from w. then iterate through (starting from the back of the list) checking to see if the check_after
+# function can be applied. If able, then switch the two letters that it applies to. Then sort the letters after the switch
+# to ensure the bigger word is the smallest bigger word possible (useful to think in terms of numbers rather than letters).
+
+def biggerIsGreater(w):
+    lis = []
+    for l in w:
+        lis.append(l)
+    for i in range(2, len(w) + 1):
+        if check_after(lis, -i) != False:
+            a, b = -i, check_after(lis, -i)
+            lis[a], lis[b] = lis[b], lis[a]
+            newlis = lis[a+1:] 
+            newlis.sort() #creates smallest possible number after the switch is made 
+            return print("".join(lis[:a+1] + newlis))
+    return print('no answer')
+
+if __name__ == '__main__':
+
+    T = int(input())
+
+    for T_itr in range(T):
+        w = input()
+
+        result = biggerIsGreater(w)
